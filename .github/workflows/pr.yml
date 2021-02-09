@@ -14,3 +14,4 @@ jobs:
     # Runs a single command using the runners shell
     - name: Send greeting
       run: echo "Hello 123"
+    - run: exit 1
