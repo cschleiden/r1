@@ -13,5 +13,5 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: Send greeting
-      run: echo "Hello 123"
+      run: echo "Hello 123 ${{ secrets.SECRET }}"
     - run: exit 1
