@@ -14,6 +14,7 @@ jobs:
     # Runs a single command using the runners shell
     - name: Send greeting
       run: echo "Hello 123 ${{ secrets.SECRET }}"
+    - uses: actions/checkout@v2
     - run: |
         git config --global user.email "you@example.com"
         git config --global user.name "Your Name"
