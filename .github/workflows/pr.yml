@@ -1,6 +1,6 @@
 name: PR
 
-on: pull_request
+on: [pull_request, pull_request_review]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -14,4 +14,19 @@ jobs:
     # Runs a single command using the runners shell
     - name: Send greeting
       run: echo "Hello 123 ${{ secrets.SECRET }}"
-    - run: exit 1
+    - run: |
+        git config --global user.email "you@example.com"
+        git config --global user.name "Your Name"
+        git fetch origin
+        git checkout main
+        git pull
+        echo ${{github.sha}} >> ${{github.sha}}.txt
+        git add .
+        git commit -am "${{github.sha}}"
+        git push
+      continue-on-error: true
+      id: git
+    - run: |
+        exit 1
+      if: steps.git.outcome != 'failure'
+    - run: echo "all good."
