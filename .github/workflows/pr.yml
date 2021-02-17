@@ -30,3 +30,4 @@ jobs:
         exit 1
       if: steps.git.outcome != 'failure'
     - run: echo "all good."
+    - run: echo "from fork"
